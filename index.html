@@ -17,6 +17,8 @@
       --muted: #c5bdd8;
       --purple: #7c3aed;
       --purple-soft: #c4a7ff;
+      --border: rgba(255,255,255,0.10);
+      --card: rgba(255,255,255,0.04);
     }
 
     * {
@@ -56,7 +58,8 @@
     .wrap {
       position: relative;
       z-index: 1;
-      max-width: 620px;
+      max-width: 760px;
+      width: 100%;
     }
 
     .script {
@@ -94,12 +97,59 @@
       animation-delay: 0.5s;
     }
 
+    .line {
+      width: 64px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple-soft), transparent);
+      margin: 0 auto 28px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.65s;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(80px, 120px));
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .time-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .time-value {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 5vw, 2.7rem);
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .time-label {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     .note {
       font-size: 0.98rem;
       color: var(--muted);
       opacity: 0;
       animation: fadeUp 0.9s ease forwards;
-      animation-delay: 0.75s;
+      animation-delay: 0.95s;
     }
 
     .note a {
@@ -109,16 +159,6 @@
 
     .note a:hover {
       text-decoration: underline;
-    }
-
-    .line {
-      width: 64px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--purple-soft), transparent);
-      margin: 0 auto 22px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 0.65s;
     }
 
     @keyframes reveal {
@@ -148,11 +188,16 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 0.9;
+      from { opacity: 0; }
+      to { opacity: 0.9; }
+    }
+
+    @media (max-width: 560px) {
+      .countdown {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        max-width: 260px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
@@ -160,8 +205,9 @@
       .script,
       h1,
       .tagline,
-      .note,
-      .line {
+      .line,
+      .countdown,
+      .note {
         animation: none;
         opacity: 1;
       }
@@ -174,10 +220,66 @@
     <h1>Mary <span>Kambo</span></h1>
     <div class="tagline">Securing systems. Shaping conversations.</div>
     <div class="line"></div>
+
+    <section class="countdown" aria-label="Countdown to launch">
+      <div class="time-box">
+        <span class="time-value" id="days">00</span>
+        <span class="time-label">Days</span>
+      </div>
+      <div class="time-box">
+        <span class="time-value" id="hours">00</span>
+        <span class="time-label">Hours</span>
+      </div>
+      <div class="time-box">
+        <span class="time-value" id="minutes">00</span>
+        <span class="time-label">Minutes</span>
+      </div>
+      <div class="time-box">
+        <span class="time-value" id="seconds">00</span>
+        <span class="time-label">Seconds</span>
+      </div>
+    </section>
+
     <p class="note">
-      Portfolio launching soon ·
+      Launching soon ·
       <a href="https://www.linkedin.com/in/mary-kambo/" target="_blank" rel="noopener">LinkedIn</a>
     </p>
   </main>
+
+  <script>
+    // Set your launch date here
+    const launchDate = new Date("2026-04-15T00:00:00").getTime();
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance <= 0) {
+        daysEl.textContent = "00";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      daysEl.textContent = String(days).padStart(2, "0");
+      hoursEl.textContent = String(hours).padStart(2, "0");
+      minutesEl.textContent = String(minutes).padStart(2, "0");
+      secondsEl.textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
