@@ -2,6 +2,1018 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mary Kambo | Cybersecurity Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root{
+      --bg:#050507;
+      --bg-soft:#0d0d14;
+      --card:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.08);
+      --text:#f5f2ff;
+      --muted:#bbb4d4;
+      --purple:#7c3aed;
+      --purple-soft:#d2b6ff;
+      --white:#fff;
+      --shadow:0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Inter",sans-serif;
+      background:
+      radial-gradient(circle at top left, rgba(124,58,237,.22), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(124,58,237,.14), transparent 24%),
+      linear-gradient(180deg,var(--bg) 0%,var(--bg-soft) 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+      linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size:40px 40px;
+      pointer-events:none;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.35), transparent 85%);
+    }
+
+    .container{
+      width:min(1180px,92%);
+      margin:auto;
+      position:relative;
+      z-index:1;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:30px 0;
+      position:sticky;
+      top:0;
+      backdrop-filter:blur(12px);
+      z-index:999;
+    }
+
+    .logo{
+      font-family:"Cormorant Garamond", serif;
+      font-size:2.1rem;
+      font-weight:700;
+      letter-spacing:-0.03em;
+    }
+
+    .logo span{
+      color:var(--purple-soft);
+    }
+
+    nav{
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      transition:.3s ease;
+      font-size:.95rem;
+    }
+
+    nav a:hover{
+      color:white;
+    }
+
+    .hero{
+      min-height:95vh;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:50px;
+      align-items:center;
+      padding:40px 0 100px;
+    }
+
+    .eyebrow{
+      color:var(--purple-soft);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.8rem;
+      margin-bottom:20px;
+      font-weight:700;
+    }
+
+    h1{
+      font-family:"Cormorant Garamond", serif;
+      font-size:clamp(4rem,8vw,7rem);
+      line-height:.92;
+      letter-spacing:-0.05em;
+      margin-bottom:24px;
+      animation:fadeUp 1s ease;
+    }
+
+    h1 span{
+      color:var(--purple-soft);
+    }
+
+    .hero p{
+      color:var(--muted);
+      line-height:1.9;
+      max-width:620px;
+      margin-bottom:34px;
+      font-size:1.03rem;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 24px;
+      border-radius:999px;
+      text-decoration:none;
+      transition:.3s ease;
+      font-weight:600;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--purple),#5b21b6);
+      color:white;
+      box-shadow:0 12px 30px rgba(124,58,237,.3);
+    }
+
+    .btn-secondary{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:white;
+    }
+
+    .portrait-card{
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:var(--card);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+      animation:float 6s ease-in-out infinite;
+    }
+
+    .portrait-card img{
+      width:100%;
+      height:700px;
+      object-fit:cover;
+      object-position:center top;
+      display:block;
+    }
+
+    section{
+      padding:120px 0;
+    }
+
+    .section-title{
+      font-family:"Cormorant Garamond", serif;
+      font-size:clamp(2.8rem,6vw,4.2rem);
+      margin-bottom:18px;
+      letter-spacing:-0.03em;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      line-height:1.9;
+      margin-bottom:48px;
+    }
+
+    .timeline-nav{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+    }
+
+    .timeline-btn{
+      border:none;
+      padding:12px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      color:white;
+      cursor:pointer;
+      transition:.3s ease;
+      border:1px solid var(--border);
+      font-weight:600;
+    }
+
+    .timeline-btn:hover,
+    .timeline-btn.active{
+      background:linear-gradient(135deg,var(--purple),#5b21b6);
+    }
+
+    .timeline-content,
+    .writing-grid,
+    .mentor-grid,
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      overflow:hidden;
+      transition:.35s ease;
+      backdrop-filter:blur(12px);
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(210,182,255,.3);
+    }
+
+    .card-image{
+      height:240px;
+      background:
+      linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+      radial-gradient(circle at top, rgba(124,58,237,.16), transparent 36%);
+      display:grid;
+      place-items:center;
+      color:var(--muted);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transition:.5s ease;
+    }
+
+    .card:hover .card-image img{
+      filter:grayscale(0%);
+      transform:scale(1.03);
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.45);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      opacity:0;
+      transition:.35s ease;
+    }
+
+    .card:hover .overlay{
+      opacity:1;
+    }
+
+    .overlay button{
+      border:none;
+      background:linear-gradient(135deg,var(--purple),#5b21b6);
+      color:white;
+      padding:12px 18px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .card-info{
+      padding:24px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(124,58,237,.14);
+      color:var(--purple-soft);
+      font-size:.8rem;
+      margin-bottom:14px;
+      font-weight:600;
+    }
+
+    .card-info h3{
+      margin-bottom:10px;
+      font-size:1.15rem;
+    }
+
+    .card-info p{
+      color:var(--muted);
+      line-height:1.8;
+      font-size:.95rem;
+    }
+
+    .glass-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:30px;
+      transition:.35s ease;
+      backdrop-filter:blur(12px);
+    }
+
+    .glass-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(210,182,255,.3);
+    }
+
+    .glass-card h3{
+      margin-bottom:12px;
+    }
+
+    .glass-card p{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:20px;
+    }
+
+    .glass-card a{
+      color:var(--purple-soft);
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .credly{
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+    }
+
+    iframe{
+      width:100%;
+      height:620px;
+      border:none;
+    }
+
+    footer{
+      padding:60px 0;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.75);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+      padding:20px;
+    }
+
+    .modal-content{
+      width:100%;
+      max-width:760px;
+      background:#0d0d14;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      animation:fadeUp .4s ease;
+      position:relative;
+    }
+
+    .modal-content img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+    }
+
+    .modal-info{
+      padding:28px;
+    }
+
+    .modal-info h3{
+      font-size:2rem;
+      margin-bottom:14px;
+      font-family:"Cormorant Garamond", serif;
+    }
+
+    .modal-info p{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .close-modal{
+      position:absolute;
+      top:18px;
+      right:18px;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:none;
+      background:rgba(255,255,255,.08);
+      color:white;
+      font-size:1.2rem;
+      cursor:pointer;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-8px);
+      }
+    }
+
+    @media(max-width:940px){
+
+      .hero{
+        grid-template-columns:1fr;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .portrait-card img{
+        height:520px;
+      }
+    }
+
+    @media(max-width:640px){
+
+      .hero-buttons{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .timeline-nav{
+        overflow-x:auto;
+        flex-wrap:nowrap;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+  <div class="logo">
+    Mary <span>Kambo</span>
+  </div>
+
+  <nav>
+    <a href="#timeline">Timeline</a>
+    <a href="#writing">Writing</a>
+    <a href="#media">Featured In</a>
+    <a href="#gallery">Speaking</a>
+    <a href="#credentials">Credentials</a>
+  </nav>
+
+</header>
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Cybersecurity • Analyst • Speaker • Mentor
+    </div>
+
+    <h1>
+      Securing systems.<br>
+      <span>Shaping conversations.</span>
+    </h1>
+
+    <p>
+      A living archive of cybersecurity leadership, technical growth, speaking engagements, mentorship initiatives, certifications, and thought leadership documented across the years.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#timeline" class="btn btn-primary">
+        Explore Journey
+      </a>
+
+      <a href="https://www.linkedin.com/in/mary-kambo/" target="_blank" class="btn btn-secondary">
+        LinkedIn
+      </a>
+
+      <a href="https://medium.com/@watirikambo" target="_blank" class="btn btn-secondary">
+        Medium
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="portrait-card">
+    <img src="mkay.jpeg" alt="Mary Kambo">
+  </div>
+
+</section>
+
+<section id="timeline">
+
+  <h2 class="section-title">
+    Journey Through The Years
+  </h2>
+
+  <p class="section-sub">
+    Explore cybersecurity milestones, conference appearances, certifications, mentorship work, public speaking, and industry recognition across the years.
+  </p>
+
+  <div class="timeline-nav">
+    <button class="timeline-btn active">2022</button>
+    <button class="timeline-btn">2023</button>
+    <button class="timeline-btn">2024</button>
+    <button class="timeline-btn">2025</button>
+    <button class="timeline-btn">2026</button>
+  </div>
+
+  <div class="timeline-content">
+
+    <div class="card">
+
+      <div class="card-image">
+        <img src="speaker1.jpg" alt="">
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">Speaking Engagement</span>
+
+        <h3>Nigeria Software Testing Week 2025</h3>
+
+        <p>
+          Moderated cybersecurity and innovation discussions focused on resilience, testing, and digital transformation.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="card-image">
+        <img src="speaker2.jpg" alt="">
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">Women In Cybersecurity</span>
+
+        <h3>Women In Cybersecurity East Africa</h3>
+
+        <p>
+          Delivered keynote sessions inspiring future female cybersecurity leaders and innovators.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="card-image">
+        <img src="speaker3.jpg" alt="">
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">Cybersecurity Workshop</span>
+
+        <h3>Hands-On Network Security Session</h3>
+
+        <p>
+          Equipped university students with practical cybersecurity and network defense skills.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="writing">
+
+  <h2 class="section-title">
+    Writing & Thought Leadership
+  </h2>
+
+  <p class="section-sub">
+    Cybersecurity insights, educational content, awareness initiatives, technical reflections, and digital resilience conversations.
+  </p>
+
+  <div class="writing-grid">
+
+    <div class="glass-card">
+
+      <h3>Cyber-Cop Hub</h3>
+
+      <p>
+        Cybersecurity insights, awareness content, and industry reflections focused on digital resilience and cyber defense.
+      </p>
+
+      <a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6952676014946689024" target="_blank">
+        Subscribe to Newsletter →
+      </a>
+
+    </div>
+
+    <div class="glass-card">
+
+      <h3>Medium Articles</h3>
+
+      <p>
+        Long-form writing covering cybersecurity awareness, offensive security, threat analysis, and digital trust.
+      </p>
+
+      <a href="https://medium.com/@watirikambo" target="_blank">
+        Read on Medium →
+      </a>
+
+    </div>
+
+    <div class="glass-card">
+
+      <h3>Featured Publications</h3>
+
+      <p>
+        Editorial features, interviews, collaborative publications, and industry commentary.
+      </p>
+
+      <a href="#media">
+        Explore Features →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="mentorship">
+
+  <h2 class="section-title">
+    Mentorship & Volunteering
+  </h2>
+
+  <p class="section-sub">
+    Community impact through mentorship, women in tech advocacy, STEM initiatives, and cybersecurity awareness programs.
+  </p>
+
+  <div class="mentor-grid">
+
+    <div class="glass-card">
+      <h3>Women In Cybersecurity</h3>
+
+      <p>
+        Supporting and empowering women pursuing careers in cybersecurity and technology across Africa.
+      </p>
+    </div>
+
+    <div class="glass-card">
+      <h3>STEM Advocacy</h3>
+
+      <p>
+        Inspiring students and young professionals to explore cybersecurity, engineering, and digital innovation.
+      </p>
+    </div>
+
+    <div class="glass-card">
+      <h3>Community Outreach</h3>
+
+      <p>
+        Facilitating practical cybersecurity education, workshops, mentorship sessions, and awareness campaigns.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="media">
+
+  <h2 class="section-title">
+    Featured In
+  </h2>
+
+  <p class="section-sub">
+    Magazine features, interviews, editorials, and media recognition highlighting cybersecurity leadership and industry impact.
+  </p>
+
+  <div class="gallery-grid">
+
+    <div class="card">
+
+      <div class="card-image">
+
+        <img src="globalsec.jpg" alt="GlobalSec">
+
+        <div class="overlay">
+
+          <button onclick="openModal(
+          'GlobalSec Magazine',
+          'Featured for cybersecurity advocacy, leadership, and industry impact.',
+          'globalsec.jpg',
+          'https://online.fliphtml5.com/iawl/March-2026-Xoio/#p=1'
+          )">
+          View Feature
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">Magazine Feature</span>
+
+        <h3>GlobalSec Magazine</h3>
+
+        <p>
+          Recognition for cybersecurity advocacy, leadership, and mentorship initiatives.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="card-image">
+
+        <img src="telecomreview.jpg" alt="Telecom Review Africa">
+
+        <div class="overlay">
+
+          <button onclick="openModal(
+          'Telecom Review Africa',
+          'Exclusive interview discussing women in cybersecurity and digital transformation.',
+          'telecomreview.jpg',
+          'https://www.telecomreviewafrica.com/articles/exclusive-interviews/4530-empowering-women-in-cybersecurity-insights-from-mary-kambo/'
+          )">
+          View Interview
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">Exclusive Interview</span>
+
+        <h3>Telecom Review Africa</h3>
+
+        <p>
+          Insights on empowering women in cybersecurity and shaping inclusive digital futures.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="glass-card">
+
+      <h3>Women In Security Magazine</h3>
+
+      <p>
+        Featured discussing leadership, mentorship, and cybersecurity advocacy.
+      </p>
+
+      <a href="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7284858497345740800" target="_blank">
+        View Feature →
+      </a>
+
+    </div>
+
+  </div>
+
+  <div style="margin-top:40px;">
+
+    <a href="presskit.pdf" class="btn btn-primary" download>
+      Download Press Kit
+    </a>
+
+  </div>
+
+</section>
+
+<section id="gallery">
+
+  <h2 class="section-title">
+    Speaking Journey
+  </h2>
+
+  <p class="section-sub">
+    Conferences, workshops, keynote sessions, panels, mentorship programs, and cybersecurity engagements across Africa and beyond.
+  </p>
+
+  <div class="gallery-grid">
+
+    <div class="card">
+      <div class="card-image">
+        <img src="event1.jpg" alt="">
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">UNITAR</span>
+
+        <h3>Digital Skills For Women & Youth</h3>
+
+        <p>
+          Engaged women and youth on leveraging digital skills for transformation and innovation.
+        </p>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="event2.jpg" alt="">
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">STEM Panel</span>
+
+        <h3>Empowering Girls In STEM</h3>
+
+        <p>
+          Inspired future innovators and changemakers through leadership and mentorship discussions.
+        </p>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">
+        <img src="event3.jpg" alt="">
+      </div>
+
+      <div class="card-info">
+
+        <span class="badge">Penetration Testing</span>
+
+        <h3>Interactive Ethical Hacking Session</h3>
+
+        <p>
+          Guided participants through practical ethical hacking techniques and cybersecurity best practices.
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="credentials">
+
+  <h2 class="section-title">
+    Credentials & Certifications
+  </h2>
+
+  <p class="section-sub">
+    Verified cybersecurity certifications, badges, and professional learning achievements integrated directly from Credly.
+  </p>
+
+  <div class="credly">
+
+    <iframe
+      src="https://www.credly.com/users/mary-kambo/embed"
+      title="Mary Kambo Credly Badges">
+    </iframe>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <p>
+    © 2026 Mary Kambo • Cybersecurity Portfolio
+  </p>
+
+</footer>
+
+<div class="modal" id="featureModal">
+
+  <div class="modal-content">
+
+    <button class="close-modal" onclick="closeModal()">
+      ×
+    </button>
+
+    <img id="modalImage" src="" alt="">
+
+    <div class="modal-info">
+
+      <h3 id="modalTitle"></h3>
+
+      <p id="modalDescription"></p>
+
+      <a id="modalLink" href="#" target="_blank" class="btn btn-primary">
+        Read Article
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<script>
+
+  function openModal(title, description, image, link){
+
+    document.getElementById("featureModal").style.display = "flex";
+
+    document.getElementById("modalTitle").innerText = title;
+
+    document.getElementById("modalDescription").innerText = description;
+
+    document.getElementById("modalImage").src = image;
+
+    document.getElementById("modalLink").href = link;
+
+  }
+
+  function closeModal(){
+
+    document.getElementById("featureModal").style.display = "none";
+
+  }
+
+  window.onclick = function(event){
+
+    const modal = document.getElementById("featureModal");
+
+    if(event.target === modal){
+      closeModal();
+    }
+
+  }
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mary Kambo | Cybersecurity Portfolio</title>
 
